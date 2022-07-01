@@ -18,37 +18,47 @@ function transformObject({
 // -------------------
 // Tailwind CSS Plugin
 // -------------------
-const multiThemePlugin = plugin(
-  function ({ addBase, theme }) {
-    // Root CSS variables
-    addBase({
-      ':root': transformObject({
-        object: theme('multiTheme')[0].colors,
-        keyTransform: ({ key }) => `--primary-${key}`,
-      }),
-    })
-    // Scoped themes
-    theme('multiTheme').forEach((t) => {
+const multiThemePlugin = plugin.withOptions(
+  function(options) {
+    const themes = options.themes ?? [{colors: {}}]
+    const themeSelector = options.themeSelector ?? function(theme) { return ([`[data-theme="${theme.name}"]`]) }
+    const semanticColor = options.semanticColor ?? 'primary'
+   return function ({ addBase }) {
+      // Root CSS variables
       addBase({
-        [`[data-theme="${t.name}"]`]: transformObject({
-          object: t.colors,
-          keyTransform: ({ key }) => [`--primary-${key}`],
+        ':root': transformObject({
+          object: themes[0].colors,
+          keyTransform: ({ key }) => `--${semanticColor}-${key}`,
         }),
       })
-    })
-  },
-  // Add  new utilities to the Tailwind config's theme
-  {
-    theme: {
-      extend: {
-        colors: ({ theme }) => ({
-          primary: transformObject({
-            object: theme('multiTheme')[0].colors,
-            valueTransform: ({ key }) => `rgb(var(--primary-${key}) / <alpha-value>)`,
+      // Scoped themes
+      themes.forEach((t) => {
+        addBase({
+          [`[data-theme="${t.name}"]`]: transformObject({
+            object: t.colors,
+            keyTransform: ({ key }) => [`--${semanticColor}-${key}`],
           }),
-        }),
-      },
-    },
+        })
+      })
+    }
+  },
+
+  function(options) {
+    const themes = options.themes ?? [{colors: {}}]
+    const semanticColor = options.semanticColor ?? 'primary'
+    // Add  new utilities to the Tailwind config's theme
+    return {
+      theme: {
+        extend: {
+          colors: {
+            [semanticColor]: transformObject({
+              object: themes[0].colors,
+              valueTransform: ({ key }) => `rgb(var(--${semanticColor}-${key}) / <alpha-value>)`,
+            }),
+          },
+        },
+      }
+    }
   }
 )
 

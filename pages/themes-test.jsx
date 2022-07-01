@@ -10,28 +10,28 @@ export default function ThemeTestPage() {
     <div className="p-8">
       <h1 className="text-3xl font-semibold">Theme colors test</h1>
       <div className="mt-8 flex flex-wrap items-center gap-4">
-        <div className="bg-primary-800 h-12 w-20 rounded-md bg-opacity-20"></div>
-        <div className="bg-primary-500/20 h-12 w-20 rounded-md"></div>
-        <div className="bg-primary-200 h-12 w-20 rounded-md"></div>
-        <p className="text-primary-900">These are</p>
-        <p className="text-primary-600 bg-whoaaa">the default</p>
-        <p className="text-primary-400">app colors</p>
+        <div className="bg-secondary-800 h-12 w-20 rounded-md"></div>
+        <div className="bg-secondary-500 h-12 w-20 rounded-md"></div>
+        <div className="bg-secondary-200 h-12 w-20 rounded-md"></div>
+        <p className="text-secondary-900">These are</p>
+        <p className="text-secondary-600 bg-whoaaa">the default</p>
+        <p className="text-secondary-400">app colors</p>
       </div>
       <div className="mt-8 flex flex-wrap items-center gap-4" data-theme="shamrock">
-        <div className="bg-primary-800 h-12 w-20 rounded-md bg-opacity-20"></div>
-        <div className="bg-primary-500 h-12 w-20 rounded-md"></div>
-        <div className="bg-primary-200 h-12 w-20 rounded-md"></div>
-        <p className="text-primary-900">Let's try</p>
-        <p className="text-primary-600">our first</p>
-        <p className="text-primary-400">theme colors</p>
+        <div className="bg-secondary-800 h-12 w-20 rounded-md"></div>
+        <div className="bg-secondary-500 h-12 w-20 rounded-md"></div>
+        <div className="bg-secondary-200 h-12 w-20 rounded-md"></div>
+        <p className="text-secondary-900">Let's try</p>
+        <p className="text-secondary-600">our first</p>
+        <p className="text-secondary-400">theme colors</p>
       </div>
       <div className="mt-8 flex flex-wrap items-center gap-4" data-theme="bittersweet">
-        <div className="bg-primary-800 h-12 w-20 rounded-md"></div>
-        <div className="bg-primary-500 h-12 w-20 rounded-md bg-opacity-20"></div>
-        <div className="bg-primary-200 h-12 w-20 rounded-md"></div>
-        <p className="text-primary-900">Let's try</p>
-        <p className="text-primary-600">our second</p>
-        <p className="text-primary-400">theme colors</p>
+        <div className="bg-secondary-800 h-12 w-20 rounded-md"></div>
+        <div className="bg-secondary-500 h-12 w-20 rounded-md"></div>
+        <div className="bg-secondary-200 h-12 w-20 rounded-md"></div>
+        <p className="text-secondary-900">Let's try</p>
+        <p className="text-secondary-600">our second</p>
+        <p className="text-secondary-400">theme colors</p>
       </div>
     </div>
   )
