@@ -6,8 +6,8 @@ export function Button({ size = 'large', look = 'primary', noIcon = false, child
 
   const colorStyles = {
     primary:
-      'bg-indigo-500 hover:bg-indigo-600 text-white disabled:opacity-50 shadow disabled:shadow-none focus:outline-none focus:ring-indigo-500 focus:ring-offset-2',
-    secondary: 'bg-indigo-100 hover:bg-indigo-200 text-indigo-700 disabled:opacity-50',
+      'bg-primary-500 hover:bg-primary-600 text-white disabled:opacity-50 shadow disabled:shadow-none focus:outline-none focus:ring-primary-500 focus:ring-offset-2',
+    secondary: 'bg-primary-100 hover:bg-primary-200 text-primary-700 disabled:opacity-50',
   }
   const spacingStyles = {
     small: 'px-3 py-1',
@@ -20,9 +20,9 @@ export function Button({ size = 'large', look = 'primary', noIcon = false, child
 
   const iconStyles = {
     primary:
-      'bg-indigo-400/50 group-hover:bg-indigo-500/50 group-hover:bg-stripes focus:bg-indigo-400/50 overflow-hidden group-disabled:bg-transparent group-disabled:pointer-events-none',
+      'bg-primary-400/50 group-hover:bg-primary-500/50 group-hover:bg-stripes focus:bg-primary-400/50 overflow-hidden group-disabled:bg-transparent group-disabled:pointer-events-none',
     secondary:
-      'bg-indigo-200/50 group-hover:bg-indigo-300/50 group-hover:bg-stripes focus:bg-indigo-200/50 overflow-hidden group-disabled:bg-transparent',
+      'bg-primary-200/50 group-hover:bg-primary-300/50 group-hover:bg-stripes focus:bg-primary-200/50 overflow-hidden group-disabled:bg-transparent',
   }
 
   if (noIcon === true) {
