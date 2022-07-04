@@ -1,7 +1,27 @@
 const plugin = require('tailwindcss/plugin')
 
+// -----------------------------------------------------------------
 // Helper functions
-// -------------------
+// -----------------------------------------------------------------
+
+// Flatten objects and kebabify its properties
+function kebabify(object, prefix = '', output = {}) {
+  Object.entries(object).forEach(([key, value]) => {
+    // Accumulate the key name separated by `-`
+    const keyName = prefix ? `${prefix}-${key}` : key
+    if (typeof value === 'object') {
+      // Recursively call kebabify when hitting nested objects
+      kebabify(value, keyName, output)
+    } else {
+      // Populate the output object with the current key name
+      output[keyName] = value
+    }
+  })
+  // Return the complete, flat object
+  return output
+}
+
+// Apply transforms to the keys or values of an already flattened object
 function transformObject({
   object,
   keyTransform = ({ key }) => key,
@@ -15,56 +35,93 @@ function transformObject({
   )
 }
 
-// -------------------
-// Tailwind CSS Plugin
-// -------------------
+// -----------------------------------------------------------------
+// Plugin definition
+// -----------------------------------------------------------------
 const multiThemePlugin = plugin.withOptions(
-  function(options) {
-    const themes = options.themes ?? [{colors: {}}]
-    const themeSelector = options.themeSelector ?? function(theme) { return ([`[data-theme="${theme.name}"]`]) }
-    const semanticColor = options.semanticColor ?? 'primary'
-   return function ({ addBase }) {
-      // Root CSS variables
+  function (options) {
+    return function ({ addBase, addVariant }) {
+      
+      // -----------------------------------------------------------------
+      // Rroot scope CSS variables
+      // -----------------------------------------------------------------
+
+      // Get user-defined themes
+      const themes = options.themes ?? [{ colors: {} }]
+      // Generate CSS-in-JS object to define CSS variables at the `:root` scope
+      const rootCssVariables = {
+        ':root': transformObject({
+          object: kebabify(themes[0].colors),
+          keyTransform: ({key}) => `--${key}`
+      })}
+      // Inject that CSS in Tailwind's `base` layer
+      addBase(rootCssVariables)
+
       addBase({
         ':root': transformObject({
-          object: themes[0].colors,
-          keyTransform: ({ key }) => `--${semanticColor}-${key}`,
-        }),
-      })
-      // Scoped themes
-      themes.forEach((t) => {
-        addBase({
-          [`[data-theme="${t.name}"]`]: transformObject({
-            object: t.colors,
-            keyTransform: ({ key }) => [`--${semanticColor}-${key}`],
-          }),
+          object: kebabify(themes[0].borderRadius),
+          keyTransform: ({key}) => '--' + key
         })
       })
+
+      // -----------------------------------------------------------------
+      // Scoped CSS variables for each themes
+      // -----------------------------------------------------------------
+
+      // Assign different values to the same CSS variables, within individual theme scopes
+      themes.forEach((theme) => {
+        // Generate CSS-in-JS
+        const scopedVariablesCss = {
+          [`[data-theme="${theme.name}"]`]: transformObject({
+              object: kebabify(theme.colors),
+              keyTransform: ({key}) => `--${key}`
+          })}
+        // Inject that CSS in Tailwind's `base` layer
+          addBase(scopedVariablesCss)
+
+          addBase(
+            {
+              [`[data-theme="${theme.name}"]`]: transformObject(
+                {
+                  object: kebabify(theme.borderRadius),
+                  keyTransform: ({key}) => '--' + key,
+                }
+              )
+      })})
+
+    // -----------------------------------------------------------------
+    // Theme-specifc variants for bespoke, element-specific overrides
+    // -----------------------------------------------------------------
+
+    themes.forEach((theme) => {
+      addVariant(`theme-${theme.name}`, `[data-theme=${theme.name}] &`)
+    })
     }
   },
 
-  function(options) {
-    const themes = options.themes ?? [{colors: {}}]
-    const semanticColor = options.semanticColor ?? 'primary'
-    // Add  new utilities to the Tailwind config's theme
+  // -----------------------------------------------------------------
+  // Tailwind config theme object
+  // -----------------------------------------------------------------
+  function (options) {
+    const themes = options.themes ?? [{ colors: {} }]
     return {
       theme: {
         extend: {
-          colors: {
-            [semanticColor]: transformObject({
-              object: themes[0].colors,
-              valueTransform: ({ key }) => `rgb(var(--${semanticColor}-${key}) / <alpha-value>)`,
-            }),
-          },
+          colors: transformObject({
+            object: kebabify(themes[0].colors),
+            valueTransform: ({key}) => `rgb(var(--${key}) / <alpha-value>)`
+          }),
+          borderRadius: transformObject({
+            object: kebabify(themes[0].borderRadius),
+            valueTransform: ({key}) => `var(--${key})`
+          }),
         },
-      }
+      },
     }
   }
 )
 
 // What next?
-// Support other keys than just colors
-// Add custom variants to target a single theme (like dark mode works)
-// Support nested entries in objects?!
+// Support other keys than just colors?
 
 module.exports = multiThemePlugin

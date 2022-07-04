@@ -9,11 +9,10 @@ module.exports = {
     './components/**/*.{js,jsx,ts,tsx}',
     './examples/**/*.{js,jsx,ts,tsx,html}',
   ],
-  theme: {},
+  theme: {
+  },
   plugins: [
     multiThemePlugin({
-      semanticColor: 'secondary',
-      themeSelector: (theme) => `.foo-${theme.name}`,
       themes,
     }),
   ],
