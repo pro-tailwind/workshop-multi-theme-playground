@@ -54,7 +54,7 @@ export function TimePicker({ selectedDay, bookingAvailabilities }) {
 function TimeSlot({ availability, selectedTime, setSelectedTime }) {
   const isSelected = selectedTime === availability.startTime
   return (
-    <li className="bg-stripes flex gap-1 overflow-hidden rounded-lg bg-indigo-600">
+    <li className="bg-primary-600 flex gap-1 overflow-hidden rounded-lg bg-stripes">
       <button
         disabled={isSelected}
         onClick={() => setSelectedTime(availability.startTime)}
@@ -62,7 +62,7 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
           'shrink-0 transition-all',
           isSelected
             ? 'basis-1/2 text-white'
-            : 'basis-full rounded-lg bg-indigo-200 px-5 py-3 font-semibold text-indigo-700 hover:bg-indigo-300 focus:outline-none focus:ring focus:ring-inset focus:ring-indigo-500'
+            : 'bg-primary-200 text-primary-700 hover:bg-primary-300 focus:ring-primary-500 basis-full rounded-lg px-5 py-3 font-semibold focus:outline-none focus:ring focus:ring-inset'
         )}
       >
         {format(parseISO(availability.startTime), 'h:mm a')}
@@ -70,7 +70,7 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
       <Link href={`/booking-details?time=${availability.startTime}`}>
         <a
           tabIndex={isSelected ? 0 : -1}
-          className="m-2 basis-1/2 rounded-md bg-indigo-100 px-3 py-1 text-center font-medium text-indigo-800 hover:bg-white"
+          className="bg-primary-100 text-primary-800 m-2 basis-1/2 rounded-md px-3 py-1 text-center font-medium hover:bg-white"
         >
           Confirm
         </a>
@@ -86,7 +86,7 @@ function EmptyPlaceholder() {
         return (
           <li
             key={time}
-            className="rounded-lg bg-indigo-50 px-5 py-3 text-center font-semibold text-indigo-700 [@supports_not_(backdrop-filter:blur(0))]:line-through"
+            className="bg-primary-50 text-primary-700 rounded-lg px-5 py-3 text-center font-semibold [@supports_not_(backdrop-filter:blur(0))]:line-through"
           >
             {time}
           </li>

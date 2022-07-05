@@ -69,9 +69,9 @@ export default function Themes() {
 
       {/* "Real" theming */}
       <div className="mt-16 flex gap-4">
-        <div className="theme-one h-10 w-10 rounded bg-primary-500"></div>
-        <div className="theme-two h-10 w-10 rounded bg-primary-500"></div>
-        <div className="theme-three h-10 w-10 rounded bg-primary-500"></div>
+        <div data-theme="default" className="h-10 w-10 rounded bg-primary-500"></div>
+        <div data-theme="ocean" className="h-10 w-10 rounded bg-primary-500"></div>
+        <div data-theme="pink" className="h-10 w-10 rounded bg-primary-500"></div>
       </div>
     </div>
   )

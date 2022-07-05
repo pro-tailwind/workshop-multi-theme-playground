@@ -1,4 +1,5 @@
 const plugin = require('tailwindcss/plugin')
+const colorThemes = require('./themes')
 
 // -------------------------------------
 // Helper functions
@@ -33,38 +34,32 @@ function transformObject({
   )
 }
 
-module.exports = plugin.withOptions(
-  function (options) {
-    const colorThemes = options.themes ?? [{colors: {}}]
-    return function ({ addBase }) {
+module.exports = plugin(
+  function ({ addBase }) {
+    addBase({
+      ':root': transformObject({
+        object: kebabify(colorThemes[0].colors),
+        keyTransform: ({ key }) => `--${key}`,
+      }),
+    })
+
+    colorThemes.forEach((colorTheme) => {
       addBase({
-        ':root': transformObject({
-          object: kebabify(colorThemes[0].colors),
+        [`[data-theme="${colorTheme.name}"]`]: transformObject({
+          object: kebabify(colorTheme.colors),
           keyTransform: ({ key }) => `--${key}`,
         }),
       })
-
-      colorThemes.forEach((colorTheme) => {
-        addBase({
-          [`[data-theme="${colorTheme.name}"]`]: transformObject({
-            object: kebabify(colorTheme.colors),
-            keyTransform: ({ key }) => `--${key}`,
-          }),
-        })
-      })
-    }
+    })
   },
-  function (options) {
-    const colorThemes = options.themes ?? [{ colors: {}}]
-    return {
-      theme: {
-        extend: {
-          colors: transformObject({
-            object: kebabify(colorThemes[0].colors),
-            valueTransform: ({ key }) => `rgb(var(--${key}) / <alpha-value>)`,
-          }),
-        },
+  {
+    theme: {
+      extend: {
+        colors: transformObject({
+          object: kebabify(colorThemes[0].colors),
+          valueTransform: ({ key }) => `rgb(var(--${key}) / <alpha-value>)`,
+        }),
       },
-    }
+    },
   }
 )

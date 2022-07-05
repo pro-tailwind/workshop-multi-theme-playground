@@ -3,7 +3,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/solid'
 import cx from 'classnames'
 
-const themesList = ['default', 'theme-one', 'theme-two']
+const themesList = ['default', 'ocean', 'pink']
 
 export function ThemeSwitcher({ activeTheme, setActiveTheme }) {
   return (

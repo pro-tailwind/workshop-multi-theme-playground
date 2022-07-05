@@ -4,7 +4,7 @@ With the app running, open the following URL in your browser:
 
 You can see the code for this page in the `pages/themes.jsx` file
 
-We'll use this page as a preview for our themes and test our implementation. Right now, it's actually not using any of our theming colors (we haven't implemented anything outside of the themes object). It's just using the "indigo" color.
+We'll use this page as a preview for our themes and test our implementation. Right now, it's actually not using any of our theming colors (we haven't implemented anything outside of the themes object). It's just using the "primary" color.
 
 What we want to do now is to make each of these three color spreads use our custom theme colors.
 

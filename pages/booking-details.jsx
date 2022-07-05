@@ -26,7 +26,7 @@ export default function BookingDetailsPage() {
       <div className="mt-8 space-y-2">
         <p>
           You're about to book a one-hour meeting on{' '}
-          <strong className="text-indigo-600">{formattedTime}</strong>.
+          <strong className="text-primary-600">{formattedTime}</strong>.
         </p>
         <p>Please fill in the form below to confirm.</p>
       </div>
@@ -64,7 +64,7 @@ export default function BookingDetailsPage() {
             />
           </div>
           <input
-            className="mt-6 rounded-md bg-indigo-600 px-5 py-3 text-white"
+            className="bg-primary-600 mt-6 rounded-md px-5 py-3 text-white"
             type="submit"
             value="Confirm booking"
           />

@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 
 export function BackgroundDecoration({ selectedDay }) {
   return (
-    <div className="bg-primary-500 fixed inset-0">
+    <div data-theme="pink" className="bg-primary-500 fixed inset-0">
       <div className="relative h-full">
         {/* Split background */}
         <div className="absolute inset-0 hidden xl:flex">

@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 const themes = [
   {
     name: 'default',

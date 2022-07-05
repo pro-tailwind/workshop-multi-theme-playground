@@ -8,13 +8,13 @@
   }
 
   /* Theme-specific scopes */
-  .theme-one {
+  [data-theme="default"] {
     --primary-500: theme('colors.theme-one.500');
   }
-  .theme-two {
+  [data-theme="ocean"] {
     --primary-500: theme('colors.theme-two.500');
   }
-  .theme-three {
+  [data-theme="pink"] {
     --primary-500: theme('colors.theme-three.500');
   }
 }

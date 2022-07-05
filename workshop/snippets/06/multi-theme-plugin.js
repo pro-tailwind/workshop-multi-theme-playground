@@ -8,13 +8,13 @@ module.exports = plugin(function ({ addBase }) {
     },
 
     /* Theme-specific scopes */
-    '.theme-one': {
+    '[data-theme="default"]': {
       '--primary-500': colorThemes[0].colors.primary[500],
     },
-    '.theme-two': {
+    '[data-theme="ocean"]': {
       '--primary-500': colorThemes[1].colors.primary[500],
     },
-    '.theme-three': {
+    '[data-theme="pink"]': {
       '--primary-500': colorThemes[2].colors.primary[500],
     },
   })

@@ -79,13 +79,13 @@ export function Calendar({ selectedDay, setSelectedDay, bookingAvailabilities })
         <h2 className="text-lg font-semibold">{format(selectedMonth, 'MMMM yyyy')}</h2>
         <div className="flex gap-2">
           <button
-            className="grid aspect-square w-12 max-w-full place-items-center rounded-full border border-gray-300 text-gray-400 hover:text-indigo-600"
+            className="hover:text-primary-600 grid aspect-square w-12 max-w-full place-items-center rounded-full border border-gray-300 text-gray-400"
             onClick={decrementMonth}
           >
             <ChevronLeftIcon className="-ml-0.5 h-6 w-6" />
           </button>
           <button
-            className="grid aspect-square w-12 max-w-full place-items-center rounded-full border border-gray-300 text-gray-400 hover:text-indigo-600"
+            className="hover:text-primary-600 grid aspect-square w-12 max-w-full place-items-center rounded-full border border-gray-300 text-gray-400"
             onClick={incrementMonth}
           >
             <ChevronRightIcon className="ml-0.5 h-6 w-6" />
@@ -190,10 +190,10 @@ function CalendarDay({ day, selectedDay, setSelectedDay, selectedMonth, bookingA
   const styles = {
     base: 'aspect-square w-12 max-w-full rounded-full relative',
     disabled: 'text-gray-300 pointer-events-none',
-    today: 'text-indigo-600 font-bold',
-    selected: 'bg-indigo-600 text-white font-bold bg-stripes',
+    today: 'text-primary-600 font-bold',
+    selected: 'bg-primary-600 text-white font-bold bg-stripes',
     candidate: 'hover:bg-gray-100 text-gray-900',
-    hasAvailability: 'bg-indigo-100 text-indigo-700 font-semibold hover:bg-indigo-200',
+    hasAvailability: 'bg-primary-100 text-primary-700 font-semibold hover:bg-primary-200',
   }
 
   return (
@@ -219,7 +219,7 @@ function CalendarDay({ day, selectedDay, setSelectedDay, selectedMonth, bookingA
         <span
           className={cx(
             'absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full',
-            isSelected ? 'bg-white' : 'bg-indigo-600'
+            isSelected ? 'bg-white' : 'bg-primary-600'
           )}
         ></span>
       )}

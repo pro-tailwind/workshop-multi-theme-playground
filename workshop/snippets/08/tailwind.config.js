@@ -6,10 +6,5 @@ const multiThemePlugin = require('./workshop/multi-theme-plugin')
 module.exports = {
   content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   theme: {},
-  plugins: [
-    bgStripesPlugin,
-    multiThemePlugin({
-      themes: colorThemes
-    }),
-  ],
+  plugins: [bgStripesPlugin, multiThemePlugin],
 }

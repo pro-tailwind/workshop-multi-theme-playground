@@ -9,6 +9,7 @@ module.exports = {
   plugins: [
     bgStripesPlugin,
     multiThemePlugin({
+      // Passing the themes array as an option
       themes: colorThemes
     }),
   ],
