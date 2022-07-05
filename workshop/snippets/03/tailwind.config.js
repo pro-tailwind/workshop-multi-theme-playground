@@ -10,9 +10,6 @@ module.exports = {
         'theme-one': colorThemes[0].colors.primary,
         'theme-two': colorThemes[1].colors.primary,
         'theme-three': colorThemes[2].colors.primary,
-        primary: {
-          500: 'var(--primary-500)',
-        },
       },
     },
   },

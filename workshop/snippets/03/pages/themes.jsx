@@ -68,11 +68,11 @@ export default function Themes() {
       </div>
 
       {/* "Real" theming */}
-      <div className="mt-16 flex gap-4">
-        <div className="theme-one h-10 w-10 rounded bg-primary-500"></div>
-        <div className="theme-two h-10 w-10 rounded bg-primary-500"></div>
-        <div className="theme-three h-10 w-10 rounded bg-primary-500"></div>
-      </div>
+      {/* <div className="mt-16 flex gap-4">
+        <div className="h-10 w-10 rounded bg-primary-500"></div>
+        <div className="h-10 w-10 rounded bg-primary-500"></div>
+        <div className="h-10 w-10 rounded bg-primary-500"></div>
+      </div> */}
     </div>
   )
 }
