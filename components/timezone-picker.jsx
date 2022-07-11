@@ -34,7 +34,7 @@ export function TimezonePicker({ activeTheme }) {
       <div className="text-center md:text-left">
         <button
           onClick={() => setIsOpen(true)}
-          className="border-primary-50 hover:bg-primary-50 focus:ring-primary-300 rounded-full border-2 px-4 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-offset-2"
+          className="rounded-full border-2 border-indigo-50 px-4 py-2 text-slate-900 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-2"
         >
           <span className="flex items-center justify-between gap-2">
             <span className="flex min-w-0 items-center gap-2">
@@ -53,7 +53,7 @@ export function TimezonePicker({ activeTheme }) {
         <Dialog
           data-theme={activeTheme}
           onClose={setIsOpen}
-          className="fixed inset-0 z-10 overflow-y-auto px-4 pt-[35vh]"
+          className="fixed inset-0 z-10 overflow-y-auto px-4 pt-[30vh]"
         >
           <Transition.Child
             enter="transition ease-out duration-300"
@@ -63,7 +63,7 @@ export function TimezonePicker({ activeTheme }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="bg-primary-900/80 fixed inset-0" />
+            <Dialog.Overlay className="fixed inset-0 bg-indigo-900/80" />
           </Transition.Child>
           <Transition.Child
             enter="transition ease-out duration-300"
@@ -96,14 +96,12 @@ export function TimezonePicker({ activeTheme }) {
                 {filteredTimezones.map((item) => (
                   <Combobox.Option key={item.value} value={item}>
                     {({ active }) => (
-                      <div className={cx('px-8 py-2', active ? 'bg-primary-500' : 'bg-white')}>
+                      <div className={cx('px-8 py-2', active ? 'bg-indigo-500' : 'bg-white')}>
                         <div className="flex gap-2">
-                          <span
-                            className={cx('font-medium', active ? ' text-white' : 'text-slate-900')}
-                          >
+                          <span className={cx(active ? ' text-white' : 'text-slate-900')}>
                             {item.text}
                           </span>
-                          <span className={cx(active ? 'text-primary-200' : 'text-slate-400')}>
+                          <span className={cx(active ? 'text-indigo-200' : 'text-slate-400')}>
                             {formatInTimeZone(new Date(), item.utc[0], 'h:mm a')}
                           </span>
                         </div>
