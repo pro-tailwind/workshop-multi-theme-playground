@@ -4,67 +4,67 @@ const plugin = require('tailwindcss/plugin')
 // Helper functions
 // -------------------------------------
 
-// kebab-case keys for nested color objects
-function kebabify(object, prefix = '', output = {}) {
-  Object.entries(object).forEach(([key, value]) => {
-    // Accumulate kebab prefix
-    const keyName = prefix ? `${prefix}-${key}` : key
+function getCssVarDeclarations(input, path = [], output = {}) {
+  for (const [key, value] of Object.entries(input)) {
+    const newPath = path.concat(key)
 
-    if (typeof value === 'object') {
-      // Recursively call kebabify if hitting nested object
-      kebabify(value, keyName, output)
+    if (typeof value === 'string') {
+      output[`--${newPath.join('-')}`] = value
     } else {
-      // Populate the output object with current keyName
-      output[keyName] = value
+      getCssVarDeclarations(value, newPath, output)
     }
-  })
+  }
   return output
 }
 
-function transformObject({
-  object = {},
-  keyTransform = ({ key }) => key,
-  valueTransform = ({ value }) => value,
-}) {
+function getInputWithCssVarReferences(input, path = []) {
   return Object.fromEntries(
-    Object.entries(object).map(([key, value]) => {
-      return [keyTransform({ key, value }), valueTransform({ key, value })]
+    Object.entries(input).map(([key, value]) => {
+      if (typeof value === 'string') {
+        return [key, `rgb(var(--${path.concat(key).join('-')}) / <alpha-value>)`]
+      }
+      return [key, getInputWithCssVarReferences(value, path.concat(key))]
     })
   )
 }
 
-module.exports = plugin.withOptions(
+// -------------------------------------
+// Plugin definition
+// -------------------------------------
+
+const multiThemePlugin = plugin.withOptions(
   function (options) {
-    const colorThemes = options.themes ?? [{colors: {}}]
+    const colorThemes = options.themes ?? [{ colors: {} }]
+
+    // -------------------------------------
+    // CSS variables declaration
+    // -------------------------------------
     return function ({ addBase }) {
       addBase({
-        ':root': transformObject({
-          object: kebabify(colorThemes[0].colors),
-          keyTransform: ({ key }) => `--${key}`,
-        }),
+        ':root': getCssVarDeclarations(colorThemes[0].colors),
       })
 
       colorThemes.forEach((colorTheme) => {
         addBase({
-          [`[data-theme="${colorTheme.name}"]`]: transformObject({
-            object: kebabify(colorTheme.colors),
-            keyTransform: ({ key }) => `--${key}`,
-          }),
+          [`[data-theme="${colorTheme.name}"]`]: getCssVarDeclarations(colorTheme.colors),
         })
       })
     }
   },
   function (options) {
-    const colorThemes = options.themes ?? [{ colors: {}}]
+    const colorThemes = options.themes ?? [{ colors: {} }]
+
+    // -------------------------------------
+    // Extending the project's `theme`
+    // -------------------------------------
     return {
       theme: {
         extend: {
-          colors: transformObject({
-            object: kebabify(colorThemes[0].colors),
-            valueTransform: ({ key }) => `rgb(var(--${key}) / <alpha-value>)`,
-          }),
+          colors: getInputWithCssVarReferences(colorThemes[0].colors),
         },
       },
     }
   }
 )
+
+module.exports = multiThemePlugin

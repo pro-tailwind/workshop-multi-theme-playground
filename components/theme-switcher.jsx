@@ -3,17 +3,17 @@ import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/solid'
 import cx from 'classnames'
 
-const themesList = ['default', 'ocean', 'pink']
+const themesList = ['default', 'rainforest', 'candy']
 
 export function ThemeSwitcher({ activeTheme, setActiveTheme }) {
   return (
     <div className="fixed top-2 right-2 z-20 text-right">
       <Listbox value={activeTheme} onChange={setActiveTheme}>
         <div className="relative mt-1">
-          <Listbox.Button className="bg-primary-700/30 hover:bg-primary-700/50 inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
+          <Listbox.Button className="inline-flex w-full justify-center rounded-md bg-primary-700/30 px-4 py-2 text-sm font-medium text-white hover:bg-primary-700/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50">
             Theme ({activeTheme})
             <ChevronDownIcon
-              className="text-primary-100 hover:text-primary-50 ml-2 -mr-1 h-5 w-5"
+              className="ml-2 -mr-1 h-5 w-5 text-primary-100 hover:text-primary-50"
               aria-hidden="true"
             />
           </Listbox.Button>
@@ -41,7 +41,7 @@ export function ThemeSwitcher({ activeTheme, setActiveTheme }) {
                   >
                     {theme}
                     {selected ? (
-                      <span className="text-primary-600 absolute inset-y-0 left-0 flex items-center pl-3">
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600">
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
                       </span>
                     ) : null}

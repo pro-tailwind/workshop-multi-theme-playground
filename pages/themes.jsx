@@ -63,6 +63,13 @@ export default function Themes() {
           <p className="font-medium text-primary-300">300</p>
         </div>
       </div>
+
+      {/* "Real" theming */}
+      <div className="mt-16 flex gap-4">
+        <div className="h-10 w-10 rounded bg-primary-500"></div>
+        <div className="h-10 w-10 rounded bg-primary-500"></div>
+        <div className="h-10 w-10 rounded bg-primary-500"></div>
+      </div>
     </div>
   )
 }

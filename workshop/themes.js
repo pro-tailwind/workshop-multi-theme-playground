@@ -17,7 +17,7 @@ const themes = [
     },
   },
   {
-    name: 'ocean',
+    name: 'rainforest',
     colors: {
       primary: {
         50: '218 251 225',
@@ -34,7 +34,7 @@ const themes = [
     },
   },
   {
-    name: 'pink',
+    name: 'candy',
     colors: {
       primary: {
         50: '255 239 247',
