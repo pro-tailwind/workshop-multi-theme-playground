@@ -30,27 +30,20 @@ export default function BookingDetailsPage() {
       <div className="mt-8 space-y-2">
         <p>
           You're about to book a one-hour meeting on{' '}
-          <strong className="text-indigo-600">{formattedTime}</strong>.
+          <strong className="text-primary-600">{formattedTime}</strong>.
         </p>
         <p>Please fill in the form below to confirm.</p>
       </div>
 
       <div className="mt-20">
-        {/* TODO: Make better styles for form fields (focus state, invalid, etc) */}
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-6">
             <Input name="name" id="name" label="Name" required />
             <Input name="email" id="email" label="Email" type="email" required />
           </div>
           <div className="mt-8">
-            <Textarea
-              name="notes"
-              label="Notes & Questions"
-              id="notes"
-              // placeholder="Any comments or suggestions to help prepare our discussion? Please share!"
-            />
+            <Textarea name="notes" label="Notes & Questions" id="notes" />
           </div>
-          {/* TODO: Loading spinner emulating an API call */}
           <div className="mt-8">
             <Button type="input" isLoading={isLoading}>
               Confirm booking

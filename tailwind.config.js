@@ -2,6 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 const colorThemes = require('./workshop/themes')
 const bgStripesPlugin = require('./plugins/bg-stripes-plugin')
+const squareDiagonalPlugin = require('./plugins/square-diagonal')
 const multiThemePlugin = require('./workshop/multi-theme-plugin')
 
 /** @type {import('tailwindcss').Config} */
@@ -16,6 +17,7 @@ module.exports = {
   },
   plugins: [
     bgStripesPlugin,
+    squareDiagonalPlugin,
     multiThemePlugin({
       themes: colorThemes,
     }),

@@ -1,3 +1,15 @@
+/*
+  NOTE:
+  The starter-app may not include this Button component,
+  since one of the workshops is about extracting re-usable components
+  and create such a button.
+  This was me experimenting with some styling approaches, but my guess is
+  the actual starter app will not use this, and rather have hardcoded buttons
+  throughout the app.
+  This will come critical though in the "Extracting Reusable UI Components" workshop,
+  which I'll focus on at a later stage (and for which I'll need plenty of Thinkmill insights!)
+*/
+
 import cx from 'classnames'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
@@ -12,15 +24,15 @@ export function Button({
   ...props
 }) {
   const baseClasses = cx(
-    'group font-semibold flex items-stretch focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none',
+    'group font-semibold flex items-stretch focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none',
     block ? 'w-full' : 'w-auto',
     noIcon ? 'justify-center' : 'justify-between',
     focusInset ? 'focus:ring-inset' : 'focus:ring-offset-2'
   )
 
   const colorClasses = {
-    primary: 'bg-indigo-500 hover:bg-indigo-600 text-white shadow-md disabled:shadow-none',
-    secondary: 'bg-indigo-100 hover:bg-indigo-200 text-indigo-700',
+    primary: 'bg-primary-500 hover:bg-primary-600 text-white shadow-md disabled:shadow-none',
+    secondary: 'bg-primary-100 hover:bg-primary-200 text-primary-700',
     ghost: 'bg-transparent text-white disabled:opacity-100',
   }
   const spacingClasses = {
@@ -34,14 +46,14 @@ export function Button({
 
   const iconContainerClasses = {
     base: cx(
-      'grid aspect-square place-items-center rounded-r group-disabled:bg-transparent overflow-hidden',
+      'grid aspect-square place-items-center rounded-r-lg group-disabled:bg-transparent overflow-hidden',
       size === 'small' ? 'px-1' : 'px-3'
     ),
     primary: cx(
-      'bg-indigo-400/50 group-hover:bg-indigo-500/50 focus:bg-indigo-400/50 group-disabled:pointer-events-none',
+      'bg-primary-400/50 group-hover:bg-primary-500/50 focus:bg-primary-400/50 group-disabled:pointer-events-none',
       size === 'large' && !isLoading && 'group-hover:bg-stripes'
     ),
-    secondary: 'bg-indigo-200/50 group-hover:bg-indigo-300/50 focus:bg-indigo-200/50 ',
+    secondary: 'bg-primary-200/50 group-hover:bg-primary-300/50 focus:bg-primary-200/50 ',
   }
 
   if (noIcon === true) {
