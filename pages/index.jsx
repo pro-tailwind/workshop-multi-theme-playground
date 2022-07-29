@@ -35,15 +35,14 @@ export default function Homepage() {
         <div className="mx-auto max-w-7xl p-8 py-16 md:py-24 lg:py-32">
           <div className="prose prose-lg prose-pink mx-auto max-w-prose xl:prose-xl">
             {/* <Image src={introImage} alt="" className="w-24 md:w-40" /> */}
-            <h2>Get ready to stretch those CSS muscles!</h2>
+            <h2>Traditional theming support with the Tailwind CSS Plugin API</h2>
             <p>
-              Together, we'll deconstruct interesting parts of the{' '}
-              <a href="https://calendar-booking-ui.protailwind.com">Calendar Booking App</a> and
-              work our CSS gymnastics with some fun challenges!
+              In this workshop, we'll add support for multiple color themes to the{' '}
+              <a href="https://calendar-booking-ui.protailwind.com">Calendar Booking App</a>.
             </p>
             <p>
-              I think you're in for a good time. But before we get started, let's go over some
-              formalities and housekeeping around the workshop.
+              Before we dive in, let's go over some formalities and housekeeping around the
+              workshop.
             </p>
 
             <hr />
@@ -72,7 +71,7 @@ export default function Homepage() {
         </div>
 
         <Link href="/workshop/01">
-          <a className="block bg-pink-600 py-12 text-center text-xl font-bold text-white transition hover:bg-fuchsia-500 md:py-16 md:text-2xl lg:py-24">
+          <a className="block bg-pink-600 py-12 text-center text-xl font-bold text-white transition hover:bg-rose-500 md:py-16 md:text-2xl lg:py-24">
             Allright. Let's get started! &rarr;
           </a>
         </Link>
@@ -94,7 +93,7 @@ const program = [
   },
   {
     time: '1:15 PM - 2:15 PM',
-    what: 'CSS gymnastics',
+    what: 'Theming part 1',
     duration: '60 min',
   },
   {
@@ -104,7 +103,7 @@ const program = [
   },
   {
     time: '2:30 PM - 3:45 PM',
-    what: 'CSS gymnastics',
+    what: 'Theming part 2',
     duration: '75 min',
   },
   {
@@ -114,7 +113,7 @@ const program = [
   },
   {
     time: '4:00 PM - 5:00 PM',
-    what: 'CSS gymnastics',
+    what: 'Theming part 3',
     duration: '60 min',
   },
 ]
@@ -247,74 +246,3 @@ function AboutMe() {
     </div>
   )
 }
-
-// export default function Themes() {
-//   return (
-//     <div className="mx-auto mt-24 max-w-7xl">
-//       <div className="p-10">
-//         <h1 className="text-center text-4xl font-semibold md:text-left">
-//           Muli-theme support in Tailwind CSS
-//         </h1>
-
-//         <div className="mt-8 space-y-4">
-//           <div data-theme="default" className="flex flex-wrap items-center gap-4">
-//             <div className="flex overflow-hidden rounded-md">
-//               <div className="h-10 w-10 bg-primary-50"></div>
-//               <div className="h-10 w-10 bg-primary-100"></div>
-//               <div className="h-10 w-10 bg-primary-200"></div>
-//               <div className="h-10 w-10 bg-primary-300"></div>
-//               <div className="h-10 w-10 bg-primary-400"></div>
-//               <div className="h-10 w-10 bg-primary-500"></div>
-//               <div className="h-10 w-10 bg-primary-600"></div>
-//               <div className="h-10 w-10 bg-primary-700"></div>
-//               <div className="h-10 w-10 bg-primary-800"></div>
-//               <div className="h-10 w-10 bg-primary-900"></div>
-//             </div>
-//             <p className="font-medium text-primary-900">900</p>
-//             <p className="font-medium text-primary-700">700</p>
-//             <p className="font-medium text-primary-500">500</p>
-//             <p className="font-medium text-primary-300">300</p>
-//           </div>
-
-//           <div data-theme="ocean" className="flex flex-wrap items-center gap-4">
-//             <div className="flex overflow-hidden rounded-md">
-//               <div className="h-10 w-10 bg-primary-50"></div>
-//               <div className="h-10 w-10 bg-primary-100"></div>
-//               <div className="h-10 w-10 bg-primary-200"></div>
-//               <div className="h-10 w-10 bg-primary-300"></div>
-//               <div className="h-10 w-10 bg-primary-400"></div>
-//               <div className="h-10 w-10 bg-primary-500"></div>
-//               <div className="h-10 w-10 bg-primary-600"></div>
-//               <div className="h-10 w-10 bg-primary-700"></div>
-//               <div className="h-10 w-10 bg-primary-800"></div>
-//               <div className="h-10 w-10 bg-primary-900"></div>
-//             </div>
-//             <p className="font-medium text-primary-900">900</p>
-//             <p className="font-medium text-primary-700">700</p>
-//             <p className="font-medium text-primary-500">500</p>
-//             <p className="font-medium text-primary-300">300</p>
-//           </div>
-
-//           <div data-theme="pink" className="flex flex-wrap items-center gap-4">
-//             <div className="flex overflow-hidden rounded-md">
-//               <div className="h-10 w-10 bg-primary-50"></div>
-//               <div className="h-10 w-10 bg-primary-100"></div>
-//               <div className="h-10 w-10 bg-primary-200"></div>
-//               <div className="h-10 w-10 bg-primary-300"></div>
-//               <div className="h-10 w-10 bg-primary-400"></div>
-//               <div className="h-10 w-10 bg-primary-500"></div>
-//               <div className="h-10 w-10 bg-primary-600"></div>
-//               <div className="h-10 w-10 bg-primary-700"></div>
-//               <div className="h-10 w-10 bg-primary-800"></div>
-//               <div className="h-10 w-10 bg-primary-900"></div>
-//             </div>
-//             <p className="font-medium text-primary-900">900</p>
-//             <p className="font-medium text-primary-700">700</p>
-//             <p className="font-medium text-primary-500">500</p>
-//             <p className="font-medium text-primary-300">300</p>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
