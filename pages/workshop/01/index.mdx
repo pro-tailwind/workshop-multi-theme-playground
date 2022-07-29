@@ -1,0 +1,136 @@
+import Link from 'next/link'
+
+import { MarkdownWrapper } from '../../../workshop/components/markdown-wrapper'
+import { ColorSpread } from '../../../workshop/components/color-spread'
+import { ChallengeLink } from '../../../workshop/components/challenge-link'
+
+export default function ({ children }) {
+  return <MarkdownWrapper>{children}</MarkdownWrapper>
+}
+
+# A color palette headstart
+
+Creating color palettes from scratch can send you down a _deceptively large_ rabbit hole. For this time-boxed workshop, we'll get a headstart and use these three custom color shades:
+
+---
+
+<div className="space-y-4">
+  <ColorSpread color="default" />
+  <ColorSpread color="rainforest" />
+  <ColorSpread color="candy" />
+</div>
+
+---
+
+There are [many useful online tools](#) to help you create color palettes.
+
+I used [Huetone](https://huetone.ardov.me) to create our workshop color shades. After the workshop, you should totally experiment with these and explore some of the great online tools!
+
+Inside the `/workshop` directory, you'll find a `themes.js` file. This is where our custom colors are defined.
+
+Here's what the file looks like:
+
+```js
+// workshop/themes.js
+const themes = [
+  {
+    name: 'default',
+    colors: {
+      50: '#eef2ff',
+      100: '#e0e7ff',
+      200: '#d0d7f7',
+      300: '#aab9ff',
+      400: '#8994ff',
+      500: '#6b70fc',
+      600: '#554fee',
+      700: '#453ccd',
+      800: '#3830a2',
+      900: '#272173',
+    },
+  },
+  {
+    name: 'rainforest',
+    colors: {
+      50: '#ecfdf4',
+      100: '#c9f2de',
+      200: '#9de9c6',
+      300: '#56d0a0',
+      400: '#00b380',
+      500: '#009268',
+      600: '#007955',
+      700: '#006344',
+      800: '#005038',
+      900: '#003422',
+    },
+  },
+  {
+    name: 'candy',
+    colors: {
+      50: '#fdf2f8',
+      100: '#f7e2ee',
+      200: '#f8cce5',
+      300: '#f5a4d0',
+      400: '#f271b5',
+      500: '#e13d90',
+      600: '#c31667',
+      700: '#a1004b',
+      800: '#84003d',
+      900: '#590028',
+    },
+  },
+]
+```
+
+You can see that we've followed Tailwind's convention of `*-50` to `*-900` for naming our shades.
+
+You don't necessarily have to do that, but since we're going to implement multiple themes to an existing Tailwind CSS project, matching the naming convention is going to make our lives much easier.
+
+---
+
+## Is this... theming?
+
+Nope.
+
+Here's how we currently implement these colors in our project:
+
+```js
+// tailwind.config.js
+
+const themes = require('./workshop/themes')
+
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        default: themes[0].colors,
+        rainforest: themes[1].colors,
+        candy: themes[2].colors,
+      },
+    },
+  },
+}
+```
+
+**There is no theming happeneing at all here**. We've extended our theme with new colors.
+
+Each color is generating new, different utility classes. Like `bg-rainforest-500`, or `text-candy-800`.
+
+Those have a "hardcoded" color baked in their name. And hold one specific value.
+
+What we want is to be able to use the same color utility class across all themes. We need a name that _makes sesnse_ regardless of what color that utility class represents.
+
+A _semantic_ color name.
+
+And we need the colors to be _redefined_ based on the currently active theme.
+
+---
+
+## CSS variables to the rescue
+
+blah blahg blaaaaahh
+
+---
+
+With that all said... Let's jump into our first challenge!
+
+<ChallengeLink href="/workshop/01/challenge" text="Take challenge #1" />

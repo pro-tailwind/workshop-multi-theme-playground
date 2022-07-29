@@ -18,7 +18,10 @@ import {
 
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
 
-export function Calendar({ selectedDay, setSelectedDay, bookingAvailabilities }) {
+import { useCalendar } from '../context'
+
+export function Calendar() {
+  const { selectedDay, setSelectedDay, bookingAvailabilities } = useCalendar()
   const [selectedMonth, setSelectedMonth] = useState(startOfMonth(selectedDay))
 
   const daysOfTheMonth = eachDayOfInterval({
@@ -219,7 +222,7 @@ function CalendarDay({ day, selectedDay, setSelectedDay, selectedMonth, bookingA
     return 'VACANCY'
   }
 
-  const baseClasses = 'relative w-12 max-w-full aspect-square rounded-full'
+  const baseClasses = /*tw*/ 'relative w-12 max-w-full aspect-square rounded-full'
   const selectedClasses = 'text-white bg-primary-600 font-bold bg-stripes'
 
   const statusClasses = {
@@ -227,7 +230,7 @@ function CalendarDay({ day, selectedDay, setSelectedDay, selectedMonth, bookingA
     NO_VACANCY: 'text-slate-800 hover:bg-slate-100',
     TODAY_NO_VACANCY: 'text-primary-700 font-bold hover:bg-slate-100 hover:text-slate-800',
     VACANCY: 'text-primary-700 bg-primary-100 font-bold hover:bg-primary-200',
-  }
+  } /*tw*/
 
   const eligibilityStatus = getEligibilityStatus()
 
@@ -235,6 +238,7 @@ function CalendarDay({ day, selectedDay, setSelectedDay, selectedMonth, bookingA
     <button
       className={cx(baseClasses, isSelected ? selectedClasses : statusClasses[eligibilityStatus])}
       onClick={() => setSelectedDay(day)}
+      disabled={eligibilityStatus === 'NOT_ELIGIBLE'}
     >
       <span>{format(day, 'd')}</span>
       {isToday(day) && (

@@ -1,11 +1,18 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/solid'
 import cx from 'classnames'
 
-const themesList = ['default', 'rainforest', 'candy']
+import { useTheme } from '../../context'
 
-export function ThemeSwitcher({ activeTheme, setActiveTheme }) {
+export function ThemeSwitcher() {
+  const { activeTheme, setActiveTheme } = useTheme()
+  useEffect(() => {
+    document.querySelector('body').setAttribute('data-theme', activeTheme)
+  }, [activeTheme])
+
+  const themesList = ['default', 'rainforest', 'candy']
+
   return (
     <div className="fixed top-2 right-2 z-20 text-right">
       <Listbox value={activeTheme} onChange={setActiveTheme}>

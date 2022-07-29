@@ -4,12 +4,16 @@ import cx from 'classnames'
 import { format, isSameDay, parseISO } from 'date-fns'
 
 import { Button } from '../components/button'
+import { useCalendar } from '../context'
 
-export function TimePicker({ selectedDay, bookingAvailabilities }) {
+export function TimePicker() {
+  const { selectedDay, bookingAvailabilities } = useCalendar()
+
   const [selectedTime, setSelectedTime] = useState(null)
   const availabilities = bookingAvailabilities.filter((availability) =>
     isSameDay(parseISO(availability.startTime), selectedDay)
   )
+
   const hasAvailability = availabilities.length > 0
   return (
     <div className="relative grid h-full grid-rows-[auto,1fr] overflow-hidden px-4 sm:px-8 xl:px-10">
@@ -123,7 +127,7 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
           look="secondary"
           block
           tabIndex={isSelected ? 0 : -1}
-          onClick={() => router.push(`/booking-details?time=${availability.startTime}`)}
+          onClick={() => router.push(`/booking-ui/booking-details?time=${availability.startTime}`)}
         >
           Confirm
         </Button>

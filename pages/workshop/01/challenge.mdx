@@ -1,0 +1,66 @@
+import Link from 'next/link'
+
+import { MarkdownWrapper } from '../../../workshop/components/markdown-wrapper'
+import { ColorSpread } from '../../../workshop/components/color-spread'
+import { Reveal } from '../../../workshop/components/reveal'
+
+export default function ({ children }) {
+  return <MarkdownWrapper>{children}</MarkdownWrapper>
+}
+
+# Your first challenge!
+
+Are you ready? Let's do this. Take the three squares below:
+
+---
+
+<div className="flex gap-4">
+  <div
+    data-theme="default"
+    className="h-24 w-24 rounded-md bg-primary-500 ring ring-inset ring-black/[0.15]"
+  ></div>
+  <div
+    data-theme="rainforest"
+    className="h-24 w-24 rounded-md bg-primary-500 ring ring-inset ring-black/[0.15]"
+  ></div>
+  <div
+    data-theme="candy"
+    className="h-24 w-24 rounded-md bg-primary-500 ring ring-inset ring-black/[0.15]"
+  ></div>
+</div>
+
+---
+
+They all have the same background color utility class of `bg-primary-500`.
+
+Since that `primary` color doesn't exist yet, they look transparent. I gave them an outline so you can actually see them!
+
+Here's the relevant code for those squares:
+
+```html
+<div class="flex gap-4">
+  <div class="... bg-primary-500" />
+  <div data-theme="rainforest" class="... bg-primary-500" />
+  <div data-theme="candy" class="... bg-primary-500" />
+</div>
+```
+
+## Your challenge
+
+Without touching the markup for these squares, make them take the `500` shade of each theme color: `default`, `rainforest` and `candy`.
+
+They should look identical to the three squares below:
+
+---
+
+<div className="flex gap-4">
+  <div className="bg-default-500 h-24 w-24 rounded-md ring ring-inset ring-black/[0.15]"></div>
+  <div className="bg-rainforest-500 h-24 w-24 rounded-md ring ring-inset ring-black/[0.15]"></div>
+  <div className="bg-candy-500 h-24 w-24 rounded-md ring ring-inset ring-black/[0.15]"></div>
+</div>
+
+---
+
+For now, do your work in the existing `/styles/tailwind.css` file, and the `tailwind.config.js` file.
+
+Good luck!

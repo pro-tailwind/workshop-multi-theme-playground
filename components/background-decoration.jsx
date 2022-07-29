@@ -1,6 +1,8 @@
+import { useCalendar } from '../context'
 import { format } from 'date-fns'
 
-export function BackgroundDecoration({ selectedDay }) {
+export function BackgroundDecoration() {
+  const { selectedDay } = useCalendar()
   return (
     /* 
       REVIEW:

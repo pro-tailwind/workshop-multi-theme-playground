@@ -30,7 +30,7 @@ export function Button({
     focusInset ? 'focus:ring-inset' : 'focus:ring-offset-2'
   )
 
-  const colorClasses = {
+  const colorClasses = /*tw*/ {
     primary: 'bg-primary-500 hover:bg-primary-600 text-white shadow-md disabled:shadow-none',
     secondary: 'bg-primary-100 hover:bg-primary-200 text-primary-700',
     ghost: 'bg-transparent text-white disabled:opacity-100',
@@ -54,7 +54,7 @@ export function Button({
       size === 'large' && !isLoading && 'group-hover:bg-stripes'
     ),
     secondary: 'bg-primary-200/50 group-hover:bg-primary-300/50 focus:bg-primary-200/50 ',
-  }
+  } /*tw*/
 
   if (noIcon === true) {
     return (
