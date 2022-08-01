@@ -1,0 +1,68 @@
+import { MarkdownWrapper } from '../../../workshop/components/markdown-wrapper'
+
+export default function ({ children }) {
+  return <MarkdownWrapper>{children}</MarkdownWrapper>
+}
+
+# Let's bring back the opacity
+
+The four squares below all use the `default-500` background color. The background opacity ranges from 100% to 25%, from left to right.
+
+---
+
+<div data-theme="default" className="flex gap-4">
+  <div className="bg-default-500 h-24 w-24 rounded-md ring ring-inset ring-black/[0.15]"></div>
+  <div className="bg-default-500 h-24 w-24 rounded-md bg-opacity-75 ring ring-inset ring-black/[0.15]"></div>
+  <div className="bg-default-500/50 h-24 w-24 rounded-md ring ring-inset ring-black/[0.15]"></div>
+  <div className="bg-default-500/[0.25] h-24 w-24 rounded-md ring ring-inset ring-black/[0.15]"></div>
+</div>
+
+---
+
+Here's the relevant code for this:
+
+```html
+<div className="bg-default-500 ..." />
+<div className="bg-default-500 bg-opacity-75 ..." />
+<div className="bg-default-500/50 ..." />
+<div className="bg-default-500/[0.25] ..." />
+```
+
+---
+
+Let's look at what happens with the exact same code, but using the `bg-primary` color instead, once for each theme:
+
+---
+
+<div className="space-y-4">
+  <div data-theme="default" className="flex gap-4">
+    <div className="h-24 w-24 rounded-md bg-primary-500 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500 bg-opacity-75 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500/50 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500/[0.25] ring ring-inset ring-black/[0.15]"></div>
+  </div>
+  <div data-theme="rainforest" className="flex gap-4">
+    <div className="h-24 w-24 rounded-md bg-primary-500 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500 bg-opacity-75 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500/50 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500/[0.25] ring ring-inset ring-black/[0.15]"></div>
+  </div>
+  <div data-theme="candy" className="flex gap-4">
+    <div className="h-24 w-24 rounded-md bg-primary-500 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500 bg-opacity-75 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500/50 ring ring-inset ring-black/[0.15]"></div>
+    <div className="h-24 w-24 rounded-md bg-primary-500/[0.25] ring ring-inset ring-black/[0.15]"></div>
+  </div>
+</div>
+
+---
+
+## Your challenge
+
+The examples above are clearly not supporting the opacity modifiers for the `primary` color.
+
+Let's fix that, so that each square shows the correct amount of opacity!
+
+Once again, you can't touch the markup.
+
+Good luck!

@@ -15,9 +15,9 @@ Creating color palettes from scratch can send you down a _deceptively large_ rab
 ---
 
 <div className="space-y-4">
-  <ColorSpread color="default" />
-  <ColorSpread color="rainforest" />
-  <ColorSpread color="candy" />
+  <ColorSpread color="cyan" />
+  <ColorSpread color="emerald" />
+  <ColorSpread color="pink" />
 </div>
 
 ---
@@ -32,9 +32,8 @@ Here's what the file looks like:
 
 ```js
 // workshop/themes.js
-const themes = [
-  {
-    name: 'default',
+const themes = {
+  default: {
     colors: {
       50: '#eef2ff',
       100: '#e0e7ff',
@@ -48,8 +47,7 @@ const themes = [
       900: '#272173',
     },
   },
-  {
-    name: 'rainforest',
+  rainforest: {
     colors: {
       50: '#ecfdf4',
       100: '#c9f2de',
@@ -63,8 +61,7 @@ const themes = [
       900: '#003422',
     },
   },
-  {
-    name: 'candy',
+  candy: {
     colors: {
       50: '#fdf2f8',
       100: '#f7e2ee',
@@ -78,7 +75,7 @@ const themes = [
       900: '#590028',
     },
   },
-]
+}
 ```
 
 You can see that we've followed Tailwind's convention of `*-50` to `*-900` for naming our shades.
@@ -102,9 +99,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        default: themes[0].colors,
-        rainforest: themes[1].colors,
-        candy: themes[2].colors,
+        default: themes.default.colors,
+        rainforest: themes.rainforest.colors,
+        candy: themes.candy.colors,
       },
     },
   },

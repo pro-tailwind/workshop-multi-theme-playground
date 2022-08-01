@@ -17,27 +17,18 @@ The `:root` scope varianble holds the default theme's `500` color shade. Each th
 
 <Reveal fileName="styles/tailwind.css">
 
-```css
-@tailwind base;
-@tailwind components;
-@tailwind uitlities;
+```js
+const plugin = require('tailwindcss/plugin')
 
-@layer base {
-  :root {
-    --primary-500: theme('colors.default.500');
-  }
+const multiThemePlugin = plugin(function ({ addBase }) {
+  addBase({
+    body: {
+      'text-transform': 'uppercase',
+    },
+  })
+})
 
-  /* Theme-specific scopes */
-  [data-theme='default'] {
-    --primary-500: theme('colors.default.500');
-  }
-  [data-theme='rainforest'] {
-    --primary-500: theme('colors.rainforest.500');
-  }
-  [data-theme='candy'] {
-    --primary-500: theme('colors.candy.500');
-  }
-}
+module.exports = multiThemePlugin
 ```
 
 </Reveal>
@@ -53,15 +44,11 @@ After that, you need to extend the `theme.colors` object with a new `primary` co
 ```diff
 module.exports = {
   theme: {
-    extend: {
-      colors: {
-        // ...
-+       primary: {
-+         500: 'var(--primary-500)',
-+       },
-     },
-    }
-  }
+    // ...
+  },
+  plugins: [
++    require('./workshop/multi-theme-plugin')
+  ]
 }
 ```
 

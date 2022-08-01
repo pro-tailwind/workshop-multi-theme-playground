@@ -37,7 +37,7 @@ export function BackgroundDecoration() {
           Is it even possible?
         */}
         <div className="absolute -bottom-20 -right-20 hidden text-[500px] font-extrabold tabular-nums leading-none text-primary-500/50 lg:block xl:text-primary-500/50">
-          {selectedDay ? format(selectedDay, 'd') : '01'}
+          {format(selectedDay, 'd')}
         </div>
       </div>
     </div>

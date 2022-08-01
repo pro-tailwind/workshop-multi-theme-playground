@@ -6,7 +6,7 @@ export function SidePanel() {
     <aside className="rounded-t-2xl border-8 border-b-0 border-white bg-slate-100 xl:rounded-l-2xl xl:rounded-tr-none xl:border-b-8 xl:border-r-0 xl:pr-4">
       <div className="-mt-16 py-8 px-4 sm:px-8 md:mt-0 xl:-mt-16 xl:px-10">
         <div className="flex flex-col items-center gap-6 md:flex-row xl:flex-col xl:items-start">
-          <Link href="/">
+          <Link href="/booking-ui">
             <a className="group relative aspect-square h-32 overflow-hidden rounded-xl shadow-xl sm:aspect-video sm:h-40">
               <img
                 src="/img/social-large.jpg"

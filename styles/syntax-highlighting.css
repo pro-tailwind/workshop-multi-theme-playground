@@ -85,7 +85,7 @@ pre[class*='language-'] {
 }
 
 .token.deleted {
-  color: rgba(239, 83, 80, 0.56);
+  color: rgb(255 88 116);
   font-style: italic;
 }
 
@@ -154,4 +154,19 @@ pre[class*='language-'] {
 
 .token.italic {
   font-style: italic;
+}
+
+.token.unchanged {
+  opacity: 0.5;
+}
+.token.inserted {
+  background: rgb(173 219 103 / 0.2);
+}
+.token.deleted {
+  background: rgb(255 88 116 / 0.2);
+}
+
+.token.inserted,
+.token.deleted {
+  padding: 0.5rem 0;
 }

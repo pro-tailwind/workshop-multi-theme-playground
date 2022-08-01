@@ -1,5 +1,3 @@
-const themes = require('./workshop/themes')
-
 const defaultTheme = require('tailwindcss/defaultTheme')
 const typogrpahyPlugin = require('@tailwindcss/typography')
 
@@ -17,22 +15,14 @@ module.exports = {
         sans: ['Open Sans', 'sans-serif', ...defaultTheme.fontFamily.sans],
         mono: ['"Dank Mono"', ...defaultTheme.fontFamily.mono],
       },
-      colors: {
-        default: themes[0].colors,
-        rainforest: themes[1].colors,
-        candy: themes[2].colors,
-      },
     },
   },
   plugins: [
     bgStripesPlugin,
     squareDiagonalPlugin,
+    typogrpahyPlugin,
     multiThemePlugin({
       themes: colorThemes,
     }),
-    typogrpahyPlugin,
   ],
-  experimental: {
-    variantGrouping: true,
-  },
 }

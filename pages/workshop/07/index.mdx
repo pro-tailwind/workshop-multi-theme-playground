@@ -1,0 +1,16 @@
+import { MarkdownWrapper } from '../../../workshop/components/markdown-wrapper'
+import { ChallengeLink } from '../../../workshop/components/challenge-link'
+
+export default function ({ children }) {
+  return <MarkdownWrapper>{children}</MarkdownWrapper>
+}
+
+# Preparing for more flexibility
+
+Up to now, we've been implementing our theming code in various places. Our CSS variables live in the `styles/tailwind.css` file, but we create new Tailwind colors using these CSS variables in our Tailwind config file.
+
+The Tailwind Plugin API allows us to consolidate all of our work into one place. It also gives us the full power of JavaScript to do all sorts of interesting things in order to generate the CSS we need.
+
+First things first - let's port all our existing code to our new plugin!
+
+<ChallengeLink href="/workshop/06/challenge" text="Start challenge" />
