@@ -11,7 +11,7 @@ export function ThemeSwitcher() {
     document.querySelector('body').setAttribute('data-theme', activeTheme)
   }, [activeTheme])
 
-  const themesList = ['default', 'rainforest', 'candy']
+  const themesList = ['base', 'rainforest', 'candy']
 
   return (
     <div className="fixed top-2 right-2 z-20 text-right">

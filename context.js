@@ -10,7 +10,7 @@ import { bookingAvailabilities } from './data'
 const ThemeContext = createContext()
 
 export function ThemeProvider({ children }) {
-  const [activeTheme, setActiveTheme] = useState('default')
+  const [activeTheme, setActiveTheme] = useState('base')
   return (
     <ThemeContext.Provider
       value={{

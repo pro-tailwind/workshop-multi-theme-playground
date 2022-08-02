@@ -1,52 +1,61 @@
 const plugin = require('tailwindcss/plugin')
+const hexRgb = require('hex-rgb')
 
-// -------------------------------------
+// ------------------------------
 // Helper functions
-// -------------------------------------
+// ------------------------------
 
-function getCssVarDeclarations(input, path = [], output = {}) {
-  for (const [key, value] of Object.entries(input)) {
+// RGB conversion
+function getRgbChannels(hex) {
+  const { red, green, blue } = hexRgb(hex)
+  return `${red} ${green} ${blue}`
+}
+
+// CSS vars generator
+function getCssVarsDeclarations(input, path = [], output = {}) {
+  Object.entries(input).forEach(([key, value]) => {
     const newPath = path.concat(key)
-
-    if (typeof value === 'string') {
-      output[`--${newPath.join('-')}`] = value
+    if (typeof value !== 'string') {
+      getCssVarsDeclarations(value, newPath, output)
     } else {
-      getCssVarDeclarations(value, newPath, output)
+      output[`--${newPath.join('-')}`] = getRgbChannels(value)
     }
-  }
+  })
   return output
 }
 
-function getInputWithCssVarReferences(input, path = []) {
-  return Object.fromEntries(
-    Object.entries(input).map(([key, value]) => {
-      if (typeof value === 'string') {
-        return [key, `rgb(var(--${path.concat(key).join('-')}) / <alpha-value>)`]
-      }
-      return [key, getInputWithCssVarReferences(value, path.concat(key))]
-    })
-  )
+// Color utilities generator
+function getColorUtilitiesWithCssVarsReference(input, path = [], output = {}) {
+  Object.entries(input).forEach(([key, value]) => {
+    const newPath = path.concat(key)
+    if (typeof value !== 'string') {
+      getColorUtilitiesWithCssVarsReference(value, newPath, output)
+    } else {
+      output[newPath.join('-')] = `rgb(var(--${newPath.join('-')}) / <alpha-value>)`
+    }
+  })
+  return output
 }
 
-// -----------------------------
+// ------------------------------
 // Plugin definition
-// -----------------------------
+// ------------------------------
 
-const multiThemePlugin = plugin.withOptions(function (options) {
-  const themes = options?.themes
-  if (!themes) throw new Error('Please pass a `themes` option when registering the multi-theme plugin.')
-  
-  const defaultThemeColors = Object.values(themes)[0]?.colors
-  if (!defaultThemeColors) throw new Error('The themes object passed to the multi-theme plugin should contain a `colors` object.') 
+const multiThemePlugin = plugin.withOptions(
+  function (options) {
+    const themes = options?.themes
+    if (!themes)
+      throw new Error(
+        'Please pass a `themes` object as an option when registering the multiTheme plugin.'
+      )
     return function ({ addBase }) {
       addBase({
-        ':root': getCssVarDeclarations(defaultThemeColors),
+        ':root': getCssVarsDeclarations(themes.base),
       })
 
       Object.entries(themes).forEach(([key, value]) => {
-        if (!value.colors) throw new Error (`The ${key} theme does not have a colors property, make sure to add one!`)
         addBase({
-          [`[data-theme="${key}"]`]: getCssVarDeclarations(value?.colors),
+          [`[data-theme="${key}"]`]: getCssVarsDeclarations(value),
         })
       })
     }
@@ -56,81 +65,11 @@ const multiThemePlugin = plugin.withOptions(function (options) {
     return {
       theme: {
         extend: {
-          colors: getInputWithCssVarReferences(Object.values(themes)[0].colors),
+          colors: getColorUtilitiesWithCssVarsReference(themes.base),
         },
       },
     }
-})
+  }
+)
 
 module.exports = multiThemePlugin
-
-// const plugin = require('tailwindcss/plugin')
-
-// // -------------------------------------
-// // Helper functions
-// // -------------------------------------
-
-// function getCssVarDeclarations(input, path = [], output = {}) {
-//   for (const [key, value] of Object.entries(input)) {
-//     const newPath = path.concat(key)
-
-//     if (typeof value === 'string') {
-//       output[`--${newPath.join('-')}`] = value
-//     } else {
-//       getCssVarDeclarations(value, newPath, output)
-//     }
-//   }
-//   return output
-// }
-
-// function getInputWithCssVarReferences(input, path = []) {
-//   return Object.fromEntries(
-//     Object.entries(input).map(([key, value]) => {
-//       if (typeof value === 'string') {
-//         return [key, `rgb(var(--${path.concat(key).join('-')}) / <alpha-value>)`]
-//       }
-//       return [key, getInputWithCssVarReferences(value, path.concat(key))]
-//     })
-//   )
-// }
-
-// // -------------------------------------
-// // Plugin definition
-// // -------------------------------------
-
-// const multiThemePlugin = plugin.withOptions(
-//   function (options) {
-//     const colorThemes = options.themes ?? [{ colors: {} }]
-
-//     // -------------------------------------
-//     // CSS variables declaration
-//     // -------------------------------------
-//     return function ({ addBase }) {
-//       addBase({
-//         ':root': getCssVarDeclarations(colorThemes[0].colors),
-//       })
-
-//       colorThemes.forEach((colorTheme) => {
-//         addBase({
-//           [`[data-theme="${colorTheme.name}"]`]: getCssVarDeclarations(colorTheme.colors),
-//         })
-//       })
-//     }
-//   },
-//   function (options) {
-//     const colorThemes = options.themes ?? [{ colors: {} }]
-
-//     // -------------------------------------
-//     // Extending the project's `theme`
-//     // -------------------------------------
-//     return {
-//       theme: {
-//         extend: {
-//           colors: getInputWithCssVarReferences(colorThemes[0].colors),
-//         },
-//       },
-//     }
-//   }
-// )
-
-// module.exports = multiThemePlugin
