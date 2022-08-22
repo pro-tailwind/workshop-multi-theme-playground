@@ -1,28 +1,29 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-const typogrpahyPlugin = require('@tailwindcss/typography')
 
-const colorThemes = require('./workshop/themes')
-const bgStripesPlugin = require('./plugins/bg-stripes-plugin')
+// Plugins
+const bgStripesPlugin = require('./plugins/bg-stripes')
 const squareDiagonalPlugin = require('./plugins/square-diagonal')
-const multiThemePlugin = require('./workshop/multi-theme-plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./{pages,components,workshop}/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  content: ['./pages/**/*.{js,jsx,ts,tsx}', './components/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
         sans: ['Open Sans', 'sans-serif', ...defaultTheme.fontFamily.sans],
-        mono: ['"Dank Mono"', ...defaultTheme.fontFamily.mono],
       },
+      width: {
+        100: '25rem',
+      },
+      gridTemplateColumns: ({ theme }) => ({
+        'background-split': `1fr 
+            ${theme('width.100')} 
+            calc(
+              ${theme('maxWidth.7xl')} - ${theme('width.100')} - ${theme('padding.8')}
+            ) 
+            1fr`,
+      }),
     },
   },
-  plugins: [
-    bgStripesPlugin,
-    squareDiagonalPlugin,
-    typogrpahyPlugin,
-    multiThemePlugin({
-      themes: colorThemes,
-    }),
-  ],
+  plugins: [bgStripesPlugin, squareDiagonalPlugin],
 }

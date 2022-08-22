@@ -1,32 +1,35 @@
 import { useRouter } from 'next/router'
-import { parseISO, format } from 'date-fns'
+import Image from 'next/future/image'
+import { useDateFormatter } from 'react-aria'
 
-import { AppShell } from '../../components/app-shell'
+import calendarImage from '../public/img/calendar.svg'
 
 export default function BookingDetailsPage() {
   const router = useRouter()
+  const dateFormatter = useDateFormatter({ dateStyle: 'full' })
+  const timeFormatter = useDateFormatter({ timeStyle: 'short' })
+
   const { time } = router.query
+
   const formattedTime = time
-    ? `${format(parseISO(time), 'eeee, do MMMM yyyy')} at ${format(parseISO(time), 'h:mm a')}`
+    ? `${dateFormatter.format(new Date(time))} at ${timeFormatter.format(new Date(time))}`
     : ''
 
   return (
-    <AppShell>
-      <div className="grid h-full place-items-center p-10">
-        <div className="grid justify-items-center">
-          <img src="/img/calendar.svg" alt="" className="mx-auto w-48 drop-shadow-xl" />
-          <h1 className="text-3xl font-bold">All set!</h1>
-          <div className="mt-4 space-y-2 text-center">
-            <p>
-              We're scheduled on <strong className="text-primary-600">{formattedTime}</strong>.
-            </p>
-            <p>You'll find an invite in your inbox.</p>
-            <p>See you then!</p>
-          </div>
-          <Signature />
+    <div className="grid h-full place-items-center p-10">
+      <div className="grid justify-items-center">
+        <Image src={calendarImage} alt="" className="mx-auto w-48 drop-shadow-xl" />
+        <h1 className="text-3xl font-bold">All set!</h1>
+        <div className="mt-4 space-y-2 text-center">
+          <p>
+            We're scheduled on <strong className="text-indigo-600">{formattedTime}</strong>.
+          </p>
+          <p>You'll find an invite in your inbox.</p>
+          <p>See you then!</p>
         </div>
+        <Signature />
       </div>
-    </AppShell>
+    </div>
   )
 }
 
@@ -37,7 +40,7 @@ export default function BookingDetailsPage() {
 function Signature() {
   return (
     <svg
-      className="group mt-6 w-40 text-primary-600"
+      className="group mt-6 w-40 text-indigo-600"
       viewBox="0 0 102 55"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

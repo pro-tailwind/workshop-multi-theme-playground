@@ -1,19 +1,17 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
-import { format, isSameDay, parseISO } from 'date-fns'
+import { useDateFormatter } from 'react-aria'
+import { getLocalTimeZone, isSameDay, parseDateTime } from '@internationalized/date'
 
 import { Button } from '../components/button'
-import { useCalendar } from '../context'
 
-export function TimePicker() {
-  const { selectedDay, bookingAvailabilities } = useCalendar()
-
+export function TimePicker({ selectedDate, bookingAvailabilities }) {
   const [selectedTime, setSelectedTime] = useState(null)
+  const formatter = useDateFormatter({ dateStyle: 'full' })
   const availabilities = bookingAvailabilities.filter((availability) =>
-    isSameDay(parseISO(availability.startTime), selectedDay)
+    isSameDay(parseDateTime(availability.startTime), selectedDate)
   )
-
   const hasAvailability = availabilities.length > 0
   return (
     <div className="relative grid h-full grid-rows-[auto,1fr] overflow-hidden px-4 sm:px-8 xl:px-10">
@@ -21,7 +19,9 @@ export function TimePicker() {
       <div className="pointer-events-none absolute inset-x-8 bottom-0 z-10 hidden h-40 bg-gradient-to-t from-white md:block xl:inset-x-10"></div>
 
       <div className="flex h-12 items-center justify-center md:justify-start">
-        <h2 className="text-lg font-semibold">{format(selectedDay, 'EEEE, do MMMM yyyy')}</h2>
+        <h2 className="text-lg font-semibold">
+          {formatter.format(selectedDate.toDate(getLocalTimeZone()))}
+        </h2>
       </div>
       <div className="-mx-4 overflow-y-auto p-4">
         <div className="relative">
@@ -61,7 +61,7 @@ export function TimePicker() {
                 return (
                   <li
                     key={time}
-                    className="rounded-lg bg-primary-100 px-5 py-3 text-center font-semibold text-primary-700 opacity-50
+                    className="rounded-lg bg-indigo-100 px-5 py-3 text-center font-semibold text-indigo-700 opacity-50
                     [@supports_not_(backdrop-filter:blur(0))]:line-through [@supports_not_(backdrop-filter:blur(0))]:opacity-30"
                   >
                     {time}
@@ -96,12 +96,13 @@ export function TimePicker() {
 */
 function TimeSlot({ availability, selectedTime, setSelectedTime }) {
   const router = useRouter()
+  const timeFormatter = useDateFormatter({ timeStyle: 'short' })
   const isSelected = selectedTime === availability.startTime
   return (
     <li
       className={cx(
         'flex gap-1 overflow-hidden rounded-lg',
-        isSelected && 'bg-primary-600 bg-stripes'
+        isSelected && 'bg-indigo-600 bg-stripes'
       )}
     >
       <div
@@ -112,22 +113,22 @@ function TimeSlot({ availability, selectedTime, setSelectedTime }) {
       >
         <Button
           block
-          noIcon
           focusInset
           look={isSelected ? 'ghost' : 'secondary'}
           disabled={isSelected}
           onClick={() => setSelectedTime(availability.startTime)}
         >
-          {format(parseISO(availability.startTime), 'h:mm a')}
+          {timeFormatter.format(new Date(availability.startTime))}
         </Button>
       </div>
       <div className="m-2 basis-1/2">
         <Button
           size="small"
           look="secondary"
+          hasIcon
           block
           tabIndex={isSelected ? 0 : -1}
-          onClick={() => router.push(`/booking-ui/booking-details?time=${availability.startTime}`)}
+          onClick={() => router.push(`/booking-details?time=${availability.startTime}`)}
         >
           Confirm
         </Button>

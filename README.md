@@ -1,94 +1,52 @@
-# Pro Tailwind: Traditional theming via the Tailwind CSS Plugin API
+# Booking UI App
 
-In this workshop, we'll take our Booking UI application and add support for multiple color themes. Those themes will work without any runtime JavaScript - it's all going to be powered by CSS.
+This is the starter app for the [Pro Tailwind](https://protailwind.com) workshops.
 
-While the theming strategy itself is JS-free in the browser, we're definitely going to use JaveScript to build our solution.
+There will be 4 half-day workshops (3-4 hours of content, not counting the breaks). Here are the topics for these:
 
-Here are the two main ingredients we'll be using:
+**1. Tailwind CSS advanced gymnastics**: A series of CSS challenges where we rebuild (or complete/fix) certain interesting parts of the Booking UI App, such as the corner ribbon, caret cutoff with shadow, scroll list with fading mask, animated stripes background, etc. A workshop on advanced CSS techniques and how to approach them with Tailwind CSS.
 
-- **CSS custom properties** (also called CSS variables)
-- The **Tailwind CSS Plugin API**
+**2. Traditional theming with Tailwind CSS**: In this workshop, we create multiple custom color themes, and implement them in the Booking UI App. We'll leverage CSS custom properties (CSS variables) and the Tailwind Plugin API to implement our theming strategy.
 
-This should be a fun one. Are you ready? Let's go!
+**3. Extracting reusable UI components with Tailwind CSS**: Throughout this workshop, we'll identify opportunities to create reusable components from elements of the existing Booking UI App. We'll look at to handle multiple style variants in a "Just-in-Time engine friendly" way, and create a little documentation website to showcase their different states and variants.
 
----
-
-## Workshop Outline
-
-**1. Warm-up gymnastics!**
-
-We don't want to pull a muscle going in cold. Before we dive into theming, let's warm those fingers up with some CSS challenges around the Booking UI app.
-
-**2. Multi-theme support**
-
-Once we're all warmed up, we'll dive into today's main topic. After checking that the Booking UI application is working locally, we'll start implementing support for multiple themes.
-
-Here are a few things the process will cover:
-
-- Creating different color theme objects, based on a Figma spec
-- "Translating" color values to a string of `R` `G` `B` channel values
-- Defining CSS variables with those colors
-- Redefining those CSS variables within theme-specific scopes
-- Extending Tailwind's color palette with new theme-agnostic colors
-- Building a Tailwind CSS plugin that can be used across multiple projects
-- Wiring-up a theme switcher on the front-end, to let users select their preferred theme
+**4. Scaling up Tailwind CSS with a monorepo architecture**: In this workshop, we'll see how to consume the same Tailwind CSS powered UI components across multiple projects, without the need to publish packages on a registry. We'll move our Booking UI app (and a couple of other projects) to a monorepo setup, which will also host the UI packages that will be shared across all projects.
 
 ---
 
-## Workshop Schedule
+## About the Booking UI App
 
-If you're taking the workshop in person, here's what the schedule will look like:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-| Time              | What               | Length | Topic                      |
-| ----------------- | ------------------ | ------ | -------------------------- |
-| 1:00 PM - 1:15 PM | Intro              | 15 min | Meet & Greet, Housekeeping |
-| 1:15 PM - 1:30 PM | Warm-up Gymnastics | 15 min | Tailwind CSS challenges    |
-| 1:30 PM - 2:15 PM | Content            | 45 min | Theming part 1             |
-| 2:15 PM - 2:30 PM | Break              | 15 min | Coffee/Snacks              |
-| 2:30 PM - 4:00 PM | Content            | 90 min | Theming part 2             |
-| 4:00 PM - 4:15 PM | Break              | 15 min | Coffee/Snack               |
-| 4:15 PM - 5:00 PM | Content            | 45 min | Theming part 3             |
+## Getting Started
 
----
+First, run the development server:
 
-## Who's the teacher?
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-Hey!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-I'm Simon, and I will be your workshop instructor. If you've watched some YouTube videos from the Tailwind Labs channel, you've most probably seen my face already!
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-I love utility-first CSS. I've been supporting and promoting this styling approach even before Tailwind CSS existed!
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-I'm a front-end developer, designer and content creator. I bring a lot of entusiasm and positive energy in everything I do, this is just how I'm wired up!
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-I think I'm really good at teaching stuff, and make people excited to learn new things.
+## Learn More
 
-I have been teaching in-person workshops for multiple senior engineering teams (Atlassian), and a constant piece of feedback I get is my workshops are exciting, fun and engaging.
+To learn more about Next.js, take a look at the following resources:
 
-And to me, that's the best way to learn!
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-I've been speaking at conferences, meetups, and I'm also an instructor on egghead.io
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Oh, and I recently started a podcast with my new friend Jon Myers - it's called The NavBar, you should check it out!
+## Deploy on Vercel
 
-You can connect with me on Twitter, I'm [@simonswiss](https://twitter.com/simonswiss).
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-I'm super excited to dive into this workshop with you.
-
-## 🥅 Goal
-
-By the end of this workshop, you'll have a solid understanding about the Tailwind CSS Plugin API, and how CSS variables can be used to redefine colors between theme scopes.
-
-## 📜 Assumptions
-
-This workshop assumes the following:
-
-- You are already familiar with Tailwind CSS and its core concepts
-- You are comfortable enough with CSS and JavaScript
-
-### 📋 Dev Environment Requirements
-
-You should have the following installed in your development environment:
-
-- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) >= 2.34.1
-- [Node](https://nodejs.org/en/download/) >= 12.18.4
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
