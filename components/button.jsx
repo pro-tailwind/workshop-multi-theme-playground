@@ -1,17 +1,3 @@
-/*
-  NOTE:
-  The starter-app may not include this Button component,
-  since one of the workshops is about extracting re-usable components
-  and create such a button.
-  This was me experimenting with some styling approaches, but my guess is
-  the actual starter app will not use this, and rather have hardcoded buttons
-  throughout the app.
-  This will come critical though in the "Extracting Reusable UI Components" workshop,
-  which I'll focus on at a later stage (and for which I'll need plenty of Thinkmill insights!)
-
-  There is a sneaky `/buttons` demo route in this app for these buttons!
-*/
-
 import propTypes from 'prop-types'
 import cx from 'classnames'
 import { ChevronRightIcon } from '@heroicons/react/solid'

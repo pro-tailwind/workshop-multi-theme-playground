@@ -2,16 +2,6 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin.withOptions(function (options) {
   return function ({ addUtilities }) {
-    /*
-      REVIEW: 
-      Review general implementation of animated background stripes (in pseudo element).
-      The main "nuisance" with the current implementation is that 
-      a wrapper (span?) is needed for the child element to sit on top of the 
-      absolutely positioned background stripes.
-      The text node directly inside the element with `.bg-stripes` 
-      will appear behind the stripes, since the stripes are 
-      absolutely positioned.
-    */
     const name = options?.name ?? 'bg-stripes'
     return addUtilities({
       [`.${name}`]: {

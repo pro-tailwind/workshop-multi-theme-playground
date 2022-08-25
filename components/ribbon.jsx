@@ -1,11 +1,3 @@
-/* 
-  REVIEW:
-  I think this ribbon implementation is pretty cool. 
-  Would love a review though.
-  You could easily add props for the position ('top-left', 'bottom-right', ...), size, etc.
-  What I like is you can just change the `width` utility on the parentmost div, 
-  and the ribbon size will adjust (thanks aspect-ratio).
-*/
 export function Ribbon() {
   return (
     <div className="absolute -right-2 -top-2 z-10 aspect-square w-32 overflow-hidden rounded-sm">

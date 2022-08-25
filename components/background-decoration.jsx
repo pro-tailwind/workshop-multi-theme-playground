@@ -1,11 +1,6 @@
 export function BackgroundDecoration({ selectedDate }) {
   return (
-    /* 
-      REVIEW:
-      All elements in this component are decorative. 
-      Is it therefore okay to put `aria-hidden` on the parentmost element?
-    */
-    <div aria-hidden="true" className="fixed inset-0 grid grid-cols-background-split">
+    <div aria-hidden="true" className="background-split fixed inset-0 grid">
       {/* Left split */}
       <div className="relative col-span-2 overflow-hidden bg-indigo-600">
         <div className="absolute -left-40 -bottom-40 hidden aspect-square w-[700px] rounded-full border-[110px] border-indigo-400 xl:block"></div>

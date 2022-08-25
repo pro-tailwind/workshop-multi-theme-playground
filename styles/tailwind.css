@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .background-split {
+    @apply grid-cols-[minmax(theme('padding.8'),1fr),calc(theme('width.100')-theme('width.4')),calc(theme('maxWidth.7xl')-theme('width.100')-theme('width.4')-(theme('padding.8')*2)+theme('width.8')),1fr];
+  }
+}

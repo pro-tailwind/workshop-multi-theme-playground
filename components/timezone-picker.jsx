@@ -10,7 +10,7 @@ import { useLocale } from 'react-aria'
 import { DateFormatter } from '@internationalized/date'
 
 export function TimezonePicker() {
-  const locale = useLocale()
+  const { locale } = useLocale()
 
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')

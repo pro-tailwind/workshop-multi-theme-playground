@@ -85,15 +85,6 @@ export function TimePicker({ selectedDate, bookingAvailabilities }) {
 // Implementation components
 // ------------------------------
 
-/*
-  REVIEW:
-  Review the below implementation.
-  The `Button` component is not really complete yet, 
-  but what you should focus on here is the transition from
-  showing 1 to showing 2 buttons,
-  Specifically, how I handle the `tabIndex`,
-  and the `overflow-hidden` parent container to hide the confirm button.
-*/
 function TimeSlot({ availability, selectedTime, setSelectedTime }) {
   const router = useRouter()
   const timeFormatter = useDateFormatter({ timeStyle: 'short' })
