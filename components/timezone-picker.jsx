@@ -1,7 +1,7 @@
 import { useState, useEffect, Fragment } from 'react'
 import cx from 'classnames'
 
-import { now, getLocalTimeZone } from '@internationalized/date'
+import { now } from '@internationalized/date'
 
 import { Dialog, Combobox, Transition } from '@headlessui/react'
 import { SearchIcon, GlobeIcon, ChevronDownIcon } from '@heroicons/react/solid'
@@ -15,7 +15,7 @@ export function TimezonePicker() {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [timezones, setTimezones] = useState([])
-  const [selectedTimezone, setSelectedTimezone] = useState(getLocalTimeZone())
+  const [selectedTimezone, setSelectedTimezone] = useState('Australia/Sydney')
 
   const filteredTimezones =
     query === ''
