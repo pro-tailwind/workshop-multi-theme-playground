@@ -25,15 +25,6 @@ export function TimePicker({ selectedDate, bookingAvailabilities }) {
       </div>
       <div className="-mx-4 overflow-y-auto p-4">
         <div className="relative">
-          {/* 
-            REVIEW:
-            Review blur/desaturate transition overlay below.
-            This works quite well, but I'm worried it's a bit hacky.
-            The part I'm worried about is the "pointer-events: none" going wrong, 
-            since it would prevent users from booking a time!
-            It should be ok though, since the z-index should prevent it from being an issue.
-            Could transform scale to 0% instead, I guess.
-          */}
           <div
             className={cx(
               'absolute -inset-x-4 inset-y-0 backdrop-blur-sm backdrop-saturate-0 transition',
