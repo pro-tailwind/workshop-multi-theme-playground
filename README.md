@@ -1,52 +1,88 @@
-# Booking UI App
+# Multi-Theme Strategy in Tailwind CSS - Playground App
 
-This is the starter app for the [Pro Tailwind](https://protailwind.com) workshops.
+Welcome to this Pro Tailwind workshop!
 
-There will be 4 half-day workshops (3-4 hours of content, not counting the breaks). Here are the topics for these:
+This app is similar to the [Calendar App](https://calendar-app.protailwind.com), but the theming part of it has been stripped out and "prepared" to be implemented.
 
-**1. Tailwind CSS advanced gymnastics**: A series of CSS challenges where we rebuild (or complete/fix) certain interesting parts of the Booking UI App, such as the corner ribbon, caret cutoff with shadow, scroll list with fading mask, animated stripes background, etc. A workshop on advanced CSS techniques and how to approach them with Tailwind CSS.
+There is no need to clone this app on your local machine for the workshop - but you can if you want.
 
-**2. Traditional theming with Tailwind CSS**: In this workshop, we create multiple custom color themes, and implement them in the Booking UI App. We'll leverage CSS custom properties (CSS variables) and the Tailwind Plugin API to implement our theming strategy.
+We'll use [GitPod](https://gitpod.io) during the workshop, to make working on the project a one-click affair.
 
-**3. Extracting reusable UI components with Tailwind CSS**: Throughout this workshop, we'll identify opportunities to create reusable components from elements of the existing Booking UI App. We'll look at to handle multiple style variants in a "Just-in-Time engine friendly" way, and create a little documentation website to showcase their different states and variants.
+Want to try it out? Click on the button below to start a new workspace!
 
-**4. Scaling up Tailwind CSS with a monorepo architecture**: In this workshop, we'll see how to consume the same Tailwind CSS powered UI components across multiple projects, without the need to publish packages on a registry. We'll move our Booking UI app (and a couple of other projects) to a monorepo setup, which will also host the UI packages that will be shared across all projects.
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/pro-tailwind/workshop-multi-theme)
+
+## Building our plugin in Tailwind Play
+
+In this workshop, we'll build a Tailwind CSS plugin that brings support for multiple color themes to any project using Tailwind.
+
+We'll do most of our work in a series of Tailwind Play challenges, but at some point we'll test our code again this Playground App.
+
+The workshop has its own website: https://theming.protailwind.com
 
 ---
 
-## About the Booking UI App
+## Workshop Schedule
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Here's what the workshop timetable will look like:
 
-## Getting Started
+| Time              | What    | Length | Topic                      |
+| ----------------- | ------- | ------ | -------------------------- |
+| 1:00 PM - 1:15 PM | Intro   | 15 min | Meet & Greet, Housekeeping |
+| 1:15 PM - 2:15 PM | Content | 60 min | Theming strategy part 1    |
+| 2:15 PM - 2:30 PM | Break   | 15 min | Coffee/Snacks              |
+| 2:30 PM - 3:45 PM | Content | 75 min | Theming strategy part 2    |
+| 3:45 PM - 4:00 PM | Break   | 15 min | Coffee/Snacks              |
+| 4:00 PM - 5:00 PM | Content | 60 min | Theming strategy part 3    |
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Focus groups & breakout rooms
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You'll be split in small focus groups for today's workshop challenges. This consists of separate "breakout rooms", where each member of the group will take turns "driving" a challenge by sharing their screen.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The groups will remain the same for the entire workshop.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+At the end of challenges, we'll all come back together to discuss. "Pairing" in small groups and actively participating to group discusions are key to this workshop. They'll help you maximise your learning experience.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+I really encourage everyone to participate actively, ask questions, and of course be supportive of one another!
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### Aaaand... who am I?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I'm Simon, your workshop instructor. 👋
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+If you've watched some YouTube videos from the Tailwind Labs channel, you've most probably seen my face already!
 
-## Deploy on Vercel
+I love utility-first CSS. I've been supporting and promoting this styling approach even before Tailwind CSS existed! I'm a front-end developer, designer and content creator.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I bring a lot of enthusiasm and positive energy in everything I do, this is just how I'm wired up!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I have been teaching in-person workshops for multiple senior engineering teams, and a constant piece of feedback I get is my workshops are exciting, fun and engaging. To me, that's the best way to learn!
+
+I sometimes speak at conferences and meetups. I make YouTube videos and I'm also an instructor on [egghead.io](https://egghead.io).
+
+You can connect with me on Twitter, I'm [simonswiss](https://twitter.com/simonswiss) 🇨🇭
+
+I'm super excited to dive into this workshop with you.
+
+---
+
+### 📜 Assumptions
+
+This workshop assumes the following:
+
+- You are already familiar with Tailwind CSS and its core concepts
+- You are comfortable enough with CSS and JavaScript
+
+---
+
+### 📋 Dev Environment Requirements
+
+You don't need to install anything on your machine for this workshop. However, if you want to get this workshop app running locally, you should have the following installed in your development environment:
+
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) >= 2.34.1
+- [Node](https://nodejs.org/en/download/) >= 12.18.4
+
+See you at the workshop!
